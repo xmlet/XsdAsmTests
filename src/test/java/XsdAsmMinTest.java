@@ -330,4 +330,21 @@ public class XsdAsmMinTest {
 
         new ShortRestricted<>().attrContactShort((short) 10001);
     }
+
+    @Test
+    public void testLongRestrictionsPass(){
+        CustomVisitorMin visitor = new CustomVisitorMin();
+
+        new LongRestricted<>().attrContactLong(9998L);
+        new LongRestricted<>().attrContactLong(9999L);
+        new LongRestricted<>().attrContactLong(10000L);
+    }
+
+    @Test(expected = RestrictionViolationException.class)
+    public void testLongRestrictionsFail(){
+        CustomVisitorMin visitor = new CustomVisitorMin();
+
+        new LongRestricted<>().attrContactLong(10001L);
+    }
+
 }
